@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Registro de usuario de MiRuta Vocacional">
+  <title>Registro | MiRuta Vocacional</title>
+  <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+:root{
+  --azul-oscuro:#073F88;
+  --azul:#0B62C9;
+  --azul-vivo:#0F75E6;
+  --azul-claro:#EDF6FF;
+  --azul-muy-claro:#F7FBFF;
+  --amarillo:#FFBD17;
+  --amarillo-hover:#EBA900;
+  --texto:#102B4D;
+  --gris:#5C6F86;
+  --gris-claro:#91A3B7;
+  --blanco:#FFFFFF;
+  --verde:#20B777;
+  --rojo:#E0565B;
+  --linea:#D7E5F5;
+  --sombra:0 24px 60px rgba(5,59,130,.18);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  min-height:100%;
+}
+
+body{
+  min-height:100vh;
+  color:var(--texto);
+  font-family:'Source Sans 3',sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(15,117,230,.16),transparent 30%),
+    radial-gradient(circle at 92% 88%,rgba(255,189,23,.20),transparent 30%),
+    linear-gradient(145deg,#F9FCFF 0%,#EDF6FF 52%,#F8FBFF 100%);
+}
+
+a{
+  color:inherit;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+.pagina{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:minmax(350px,44%) 1fr;
+}
+
+.panel-marca{
+  position:relative;
+  overflow:hidden;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:38px clamp(28px,5vw,66px);
+  color:var(--blanco);
+  background:
+    radial-gradient(circle at 18% 12%,rgba(255,255,255,.16),transparent 26%),
+    radial-gradient(circle at 90% 76%,rgba(255,189,23,.22),transparent 24%),
+    linear-gradient(145deg,var(--azul-oscuro),var(--azul) 62%,var(--azul-vivo));
+}
+
+.panel-marca::before,
+.panel-marca::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:34px solid rgba(255,255,255,.06);
+}
+
+.panel-marca::before{
+  width:250px;
+  height:250px;
+  top:-120px;
+  right:-100px;
+}
+
+.panel-marca::after{
+  width:190px;
+  height:190px;
+  bottom:-105px;
+  left:-85px;
+}
+
+.marca{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  text-decoration:none;
+}
+
+.logo-img{
+  width:190px;
+  max-height:78px;
+  object-fit:contain;
+  object-position:left center;
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,.14));
+}
+
+.logo-fallback{
+  width:54px;
+  height:54px;
+  display:none;
+  place-items:center;
+  color:var(--azul-oscuro);
+  background:var(--amarillo);
+  border:3px solid var(--blanco);
+  border-radius:50%;
+  font-family:'Poppins',sans-serif;
+  font-weight:800;
+  font-size:24px;
+  box-shadow:0 10px 24px rgba(0,0,0,.16);
+}
+
+.marca-texto{
+  display:none;
+}
+
+.marca-texto strong{
+  display:block;
+  font-family:'Poppins',sans-serif;
+  font-size:18px;
+  line-height:1.05;
+}
+
+.marca-texto small{
+  display:block;
+  margin-top:4px;
+  color:#DCEEFF;
+  font-size:11px;
+}
+
+.mensaje-marca{
+  position:relative;
+  z-index:2;
+  max-width:510px;
+  margin:70px 0;
+}
+
+.etiqueta{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:18px;
+  padding:7px 13px;
+  border:1px solid rgba(255,255,255,.30);
+  border-radius:999px;
+  background:rgba(255,255,255,.10);
+  font-size:12px;
+  font-weight:700;
+  backdrop-filter:blur(8px);
+}
+
+.etiqueta::before{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--amarillo);
+  box-shadow:0 0 0 5px rgba(255,189,23,.15);
+}
+
+.mensaje-marca h1{
+  max-width:520px;
+  font-family:'Poppins',sans-serif;
+  font-size:clamp(38px,5vw,60px);
+  line-height:1.02;
+  letter-spacing:-.045em;
+}
+
+.mensaje-marca h1 span{
+  color:var(--amarillo);
+}
+
+.mensaje-marca p{
+  max-width:480px;
+  margin-top:20px;
+  color:#E7F3FF;
+  font-size:17px;
+  line-height:1.65;
+}
+
+.ventajas{
+  display:grid;
+  gap:12px;
+  margin-top:28px;
+}
+
+.ventaja{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  color:#F4F9FF;
+  font-size:14px;
+  font-weight:600;
+}
+
+.ventaja span{
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+  color:var(--azul-oscuro);
+  background:var(--amarillo);
+  border-radius:50%;
+  font-weight:900;
+}
+
+.pie-marca{
+  position:relative;
+  z-index:2;
+  color:#CFE4FA;
+  font-size:12px;
+}
+
+.panel-formulario{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:50px 28px;
+}
+
+.tarjeta{
+  width:min(100%,510px);
+  padding:42px;
+  background:rgba(255,255,255,.96);
+  border:1px solid rgba(200,224,246,.95);
+  border-radius:26px;
+  box-shadow:var(--sombra);
+  backdrop-filter:blur(12px);
+}
+
+.encabezado-form{
+  margin-bottom:28px;
+}
+
+.encabezado-form .icono{
+  width:54px;
+  height:54px;
+  display:grid;
+  place-items:center;
+  margin-bottom:17px;
+  color:var(--azul-oscuro);
+  background:var(--amarillo);
+  border-radius:17px;
+  box-shadow:0 11px 25px rgba(255,189,23,.29);
+}
+
+.encabezado-form .icono svg{
+  width:27px;
+  height:27px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2;
+}
+
+.encabezado-form h2{
+  color:var(--azul-oscuro);
+  font-family:'Poppins',sans-serif;
+  font-size:clamp(28px,4vw,38px);
+  line-height:1.15;
+  letter-spacing:-.035em;
+}
+
+.encabezado-form p{
+  margin-top:8px;
+  color:var(--gris);
+  font-size:15px;
+  line-height:1.55;
+}
+
+.formulario{
+  display:grid;
+  gap:18px;
+}
+
+.fila{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.campo label{
+  display:block;
+  margin-bottom:7px;
+  color:#23466E;
+  font-size:13px;
+  font-weight:700;
+}
+
+.control{
+  position:relative;
+}
+
+.control svg{
+  position:absolute;
+  top:50%;
+  left:14px;
+  width:19px;
+  height:19px;
+  transform:translateY(-50%);
+  fill:none;
+  stroke:#7894B1;
+  stroke-width:1.8;
+  pointer-events:none;
+}
+
+.control input{
+  width:100%;
+  min-height:52px;
+  padding:13px 45px 13px 44px;
+  color:var(--texto);
+  background:var(--blanco);
+  border:1.5px solid var(--linea);
+  border-radius:14px;
+  outline:none;
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+
+.control input::placeholder{
+  color:#A3B1C0;
+}
+
+.control input:focus{
+  border-color:var(--azul);
+  box-shadow:0 0 0 4px rgba(11,98,201,.11);
+}
+
+.ver-clave{
+  position:absolute;
+  top:50%;
+  right:12px;
+  transform:translateY(-50%);
+  border:0;
+  padding:7px;
+  color:var(--azul-oscuro);
+  background:transparent;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:700;
+}
+
+.opciones{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  font-size:13px;
+}
+
+.recordar{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--gris);
+}
+
+.recordar input{
+  accent-color:var(--azul);
+}
+
+.enlace{
+  color:var(--azul);
+  text-decoration:none;
+  font-weight:700;
+}
+
+.enlace:hover{
+  text-decoration:underline;
+}
+
+.btn-principal{
+  width:100%;
+  min-height:53px;
+  border:0;
+  border-radius:999px;
+  color:#173759;
+  background:var(--amarillo);
+  box-shadow:0 12px 26px rgba(255,189,23,.32);
+  cursor:pointer;
+  font-family:'Poppins',sans-serif;
+  font-weight:800;
+  transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
+}
+
+.btn-principal:hover{
+  transform:translateY(-2px);
+  background:var(--amarillo-hover);
+  box-shadow:0 15px 31px rgba(255,189,23,.39);
+}
+
+.btn-principal:active{
+  transform:translateY(0);
+}
+
+.mensaje{
+  display:none;
+  padding:12px 14px;
+  border-radius:12px;
+  font-size:13px;
+  line-height:1.45;
+}
+
+.mensaje.visible{
+  display:block;
+}
+
+.mensaje.error{
+  color:#9D2F35;
+  background:#FFF0F1;
+  border:1px solid #F5C8CB;
+}
+
+.mensaje.exito{
+  color:#117A51;
+  background:#EBFAF3;
+  border:1px solid #BEEAD5;
+}
+
+.divisor{
+  position:relative;
+  margin:4px 0;
+  text-align:center;
+  color:var(--gris-claro);
+  font-size:12px;
+}
+
+.divisor::before{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:0;
+  right:0;
+  height:1px;
+  background:var(--linea);
+}
+
+.divisor span{
+  position:relative;
+  padding:0 12px;
+  background:var(--blanco);
+}
+
+.alternativa{
+  text-align:center;
+  color:var(--gris);
+  font-size:14px;
+}
+
+.alternativa a{
+  color:var(--azul);
+  text-decoration:none;
+  font-weight:800;
+}
+
+.alternativa a:hover{
+  text-decoration:underline;
+}
+
+.volver{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:22px;
+  color:var(--gris);
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+}
+
+.volver:hover{
+  color:var(--azul);
+}
+
+.nota-demo{
+  margin-top:17px;
+  padding:10px 12px;
+  color:#6E5A18;
+  background:#FFF8DC;
+  border:1px solid #F4E0A0;
+  border-radius:11px;
+  font-size:11px;
+  line-height:1.45;
+}
+
+@media(max-width:900px){
+  .pagina{
+    grid-template-columns:1fr;
+  }
+
+  .panel-marca{
+    min-height:auto;
+    padding:28px 24px 48px;
+  }
+
+  .mensaje-marca{
+    margin:46px 0 24px;
+  }
+
+  .mensaje-marca h1{
+    font-size:clamp(36px,8vw,54px);
+  }
+
+  .pie-marca{
+    display:none;
+  }
+
+  .panel-formulario{
+    min-height:auto;
+    padding:32px 16px 48px;
+  }
+}
+
+@media(max-width:540px){
+  .logo-img{
+    width:155px;
+  }
+
+  .tarjeta{
+    padding:30px 20px;
+    border-radius:21px;
+  }
+
+.logo-ucacue{
+    position:absolute;
+    top:-20px;
+    left:50px;
+    width:100px;   
+    height:auto;
+}
+  .fila{
+    grid-template-columns:1fr;
+  }
+
+  .opciones{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .mensaje-marca h1{
+    font-size:38px;
+  }
+
+  .mensaje-marca p{
+    font-size:15px;
+  }
+}
+
+  </style>
+</head>
+<body>
+<main class="pagina">
+  
+<section class="panel-marca">
+  <a class="marca" href="index.html">
+         
+    <span class="logo-fallback">M</span>
+    <span class="marca-texto">
+      <strong>MiRuta Vocacional</strong>
+      <small>Descubre tu camino, elige tu futuro</small>
+    </span>
+  </a>
+
+  <div class="mensaje-marca">
+    <span class="etiqueta">Crea tu perfil vocacional</span>
+    <h1>Tu camino comienza con <span>una decisión</span></h1>
+    <p>
+      Regístrate para realizar el test, guardar tus avances y descubrir
+      las áreas profesionales con mayor afinidad a tus intereses.
+    </p>
+
+    <div class="ventajas">
+      <div class="ventaja"><span>✓</span> Registro gratuito</div>
+      <div class="ventaja"><span>✓</span> Perfil personal y seguro</div>
+      <div class="ventaja"><span>✓</span> Acceso a recomendaciones de carreras</div>
+    </div>
+  </div>
+
+  <p class="pie-marca">© 2026 MiRuta Vocacional · Universidad Católica de Cuenca</p>
+</section>
+
+
+  <section class="panel-formulario">
+    <div class="tarjeta">
+      <div class="encabezado-form">
+        <div class="icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/>
+            <path d="M2 21c.5-4.3 2.9-7 7-7 2.1 0 3.7.7 4.8 1.8"/>
+            <path d="M18 13v8M14 17h8"/>
+          </svg>
+        </div>
+        <h2>Crear una cuenta</h2>
+        <p>Completa tus datos para acceder al test de orientación vocacional.</p>
+      </div>
+
+      <form class="formulario" id="formRegistro" novalidate>
+        <div class="fila">
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <div class="control">
+              <svg viewBox="0 0 24 24"><path d="M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="M4.5 21c.6-4.4 3.1-7 7.5-7s6.9 2.6 7.5 7"/></svg>
+              <input id="nombre" name="nombre" type="text" autocomplete="given-name"
+                     placeholder="Tu nombre" minlength="2" required>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="apellido">Apellido</label>
+            <div class="control">
+              <svg viewBox="0 0 24 24"><path d="M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="M4.5 21c.6-4.4 3.1-7 7.5-7s6.9 2.6 7.5 7"/></svg>
+              <input id="apellido" name="apellido" type="text" autocomplete="family-name"
+                     placeholder="Tu apellido" minlength="2" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo electrónico</label>
+          <div class="control">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+            <input id="correo" name="correo" type="email" autocomplete="email"
+                   placeholder="ejemplo@correo.com" required>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="celular">Número celular</label>
+          <div class="control">
+            <svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M10 5h4M11 19h2"/></svg>
+            <input id="celular" name="celular" type="tel" autocomplete="tel"
+                   inputmode="tel" placeholder="Ejemplo: 0991234567"
+                   pattern="[0-9+() -]{7,18}" required>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="contrasena">Contraseña</label>
+          <div class="control">
+            <svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+            <input id="contrasena" name="contrasena" type="password"
+                   autocomplete="new-password" placeholder="Mínimo 6 caracteres"
+                   minlength="6" required>
+            <button class="ver-clave" type="button" data-toggle="contrasena">Ver</button>
+          </div>
+        </div>
+
+        <label class="recordar">
+          <input id="terminos" type="checkbox" required>
+          Acepto el uso de mis datos para crear mi perfil vocacional.
+        </label>
+
+        <div class="mensaje" id="mensajeRegistro" role="alert"></div>
+
+        <button class="btn-principal" type="submit">Crear mi cuenta →</button>
+
+        <div class="divisor"><span>¿Ya tienes una cuenta?</span></div>
+
+        <p class="alternativa">
+          Ingresa desde <a href="login.html">Iniciar sesión</a>
+        </p>
+      </form>
+
+      <a class="volver" href="inicio.html">← Volver a la página principal</a>
+
+    </div>
+  </section>
+</main>
+
+<script>
+  const formRegistro = document.getElementById('formRegistro');
+  const mensajeRegistro = document.getElementById('mensajeRegistro');
+
+  document.querySelectorAll('[data-toggle]').forEach(boton => {
+    boton.addEventListener('click', () => {
+      const input = document.getElementById(boton.dataset.toggle);
+      const visible = input.type === 'text';
+      input.type = visible ? 'password' : 'text';
+      boton.textContent = visible ? 'Ver' : 'Ocultar';
+    });
+  });
+
+  function mostrarMensaje(texto, tipo) {
+    mensajeRegistro.textContent = texto;
+    mensajeRegistro.className = 'mensaje visible ' + tipo;
+  }
+
+  formRegistro.addEventListener('submit', evento => {
+    evento.preventDefault();
+
+    const nombre = document.getElementById('nombre').value.trim();
+    const apellido = document.getElementById('apellido').value.trim();
+    const correo = document.getElementById('correo').value.trim().toLowerCase();
+    const celular = document.getElementById('celular').value.trim();
+    const contrasena = document.getElementById('contrasena').value;
+    const aceptaTerminos = document.getElementById('terminos').checked;
+
+    if (!nombre || !apellido || !correo || !celular || !contrasena) {
+      mostrarMensaje('Completa todos los campos del formulario.', 'error');
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+      mostrarMensaje('Ingresa un correo electrónico válido.', 'error');
+      return;
+    }
+
+    if (!/^[0-9+() -]{7,18}$/.test(celular)) {
+      mostrarMensaje('Ingresa un número celular válido.', 'error');
+      return;
+    }
+
+    if (contrasena.length < 6) {
+      mostrarMensaje('La contraseña debe contener al menos 6 caracteres.', 'error');
+      return;
+    }
+
+    if (!aceptaTerminos) {
+      mostrarMensaje('Debes aceptar el uso de datos para crear la cuenta.', 'error');
+      return;
+    }
+
+    const usuario = {
+      nombre,
+      apellido,
+      correo,
+      celular,
+      contrasena
+    };
+
+    localStorage.setItem('miruta_usuario', JSON.stringify(usuario));
+    localStorage.setItem('miruta_correo_recordado', correo);
+
+    mostrarMensaje('Cuenta creada correctamente. Redirigiendo al inicio de sesión…', 'exito');
+
+    formRegistro.querySelectorAll('input,button').forEach(elemento => {
+      elemento.disabled = true;
+    });
+
+    setTimeout(() => {
+      window.location.href = 'login.html';
+    }, 1000);
+  });
+</script>
+</body>
+</html>

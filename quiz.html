@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MiRuta Vocacional</title>
+<style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --azul-oscuro:#073F88;
+    --azul:#0B62C9;
+    --azul-vivo:#0F75E6;
+    --azul-claro:#EDF6FF;
+    --azul-muy-claro:#F7FBFF;
+    --amarillo:#FFBD17;
+    --amarillo-hover:#EBA900;
+    --texto:#102B4D;
+    --gris:#5C6F86;
+    --gris-claro:#91A3B7;
+    --blanco:#FFFFFF;
+    --verde:#20B777;
+    --verde-oscuro:#159463;
+    --morado:#A93BEC;
+    --naranja:#FF9418;
+    --rojo:#E0565B;
+    --rojo-oscuro:#C94148;
+    --linea:#D7E5F5;
+    --sombra:0 22px 55px rgba(5,59,130,.14);
+  }
+
+  *{
+    box-sizing:border-box;
+  }
+
+  html,
+  body{
+    margin:0;
+    padding:0;
+    min-height:100%;
+  }
+
+  body{
+    position:relative;
+    overflow-x:hidden;
+    color:var(--texto);
+    font-family:'Source Sans 3',sans-serif;
+    background:
+      radial-gradient(circle at 8% 10%, rgba(15,117,230,.13), transparent 28%),
+      radial-gradient(circle at 93% 88%, rgba(255,189,23,.16), transparent 30%),
+      linear-gradient(145deg,#F9FCFF 0%,#EDF6FF 54%,#F8FBFF 100%);
+    padding:38px 20px 55px;
+  }
+
+  body::before,
+  body::after{
+    content:"";
+    position:fixed;
+    z-index:-1;
+    border-radius:50%;
+    pointer-events:none;
+    filter:blur(1px);
+  }
+
+  body::before{
+    width:310px;
+    height:310px;
+    top:-115px;
+    right:-95px;
+    background:rgba(11,98,201,.10);
+  }
+
+  body::after{
+    width:240px;
+    height:240px;
+    left:-110px;
+    bottom:-90px;
+    background:rgba(255,189,23,.14);
+  }
+   
+   .logo-ucacue{
+    position:absolute;
+    top:10px;
+    left:100px;
+    width:300px;   
+    height:auto;
+}
+ 
+
+  .wrap{
+    width:100%;
+    max-width:1040px;
+    margin:58px auto 0;
+  }
+
+  .masthead{
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    min-height:112px;
+    padding:26px 32px;
+    color:var(--blanco);
+    background:
+      radial-gradient(circle at 86% 20%,rgba(255,255,255,.15),transparent 28%),
+      linear-gradient(115deg,var(--azul-oscuro),var(--azul) 58%,var(--azul-vivo));
+    border-radius:24px 24px 0 0;
+    box-shadow:var(--sombra);
+  }
+
+  .masthead::before{
+    content:"";
+    position:absolute;
+    right:-55px;
+    bottom:-80px;
+    width:210px;
+    height:210px;
+    border:32px solid rgba(255,255,255,.07);
+    border-radius:50%;
+  }
+
+  .masthead h1{
+    position:relative;
+    z-index:1;
+    max-width:680px;
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    font-size:clamp(1.45rem,3vw,2.15rem);
+    font-weight:800;
+    line-height:1.15;
+    letter-spacing:-.035em;
+  }
+
+  .masthead h1::after{
+    content:"";
+    display:block;
+    width:86px;
+    height:5px;
+    margin-top:14px;
+    border-radius:20px;
+    background:var(--amarillo);
+  }
+
+  .masthead .tag{
+    position:relative;
+    z-index:1;
+    max-width:230px;
+    padding:10px 14px;
+    border:1px solid rgba(255,255,255,.30);
+    border-radius:14px;
+    color:#F4F9FF;
+    background:rgba(255,255,255,.10);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.69rem;
+    line-height:1.45;
+    letter-spacing:.045em;
+    text-align:center;
+    text-transform:uppercase;
+    backdrop-filter:blur(8px);
+  }
+
+  .subline{
+    margin:0;
+    padding:14px 30px;
+    color:#244D7B;
+    background:#DCEEFF;
+    border-bottom:1px solid #C8E0F7;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.74rem;
+    line-height:1.55;
+    letter-spacing:.01em;
+  }
+
+  .dossier{
+    position:relative;
+    min-height:330px;
+    padding:42px;
+    background:rgba(255,255,255,.96);
+    border:1px solid rgba(199,222,245,.88);
+    border-top:none;
+    border-radius:0 0 24px 24px;
+    box-shadow:var(--sombra);
+    backdrop-filter:blur(12px);
+  }
+
+  .stamp{
+    position:absolute;
+    top:-17px;
+    right:28px;
+    padding:7px 14px;
+    color:var(--azul-oscuro);
+    background:var(--amarillo);
+    border:3px solid var(--blanco);
+    border-radius:999px;
+    box-shadow:0 7px 18px rgba(7,63,136,.18);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.71rem;
+    font-weight:600;
+    letter-spacing:.04em;
+    transform:none;
+  }
+
+  #screen-intro{
+    max-width:830px;
+    margin:auto;
+  }
+
+  #screen-intro .lead{
+    position:relative;
+    margin:0 0 26px;
+    padding:22px 24px 22px 64px;
+    color:var(--gris);
+    background:var(--azul-claro);
+    border:1px solid #D4E8FA;
+    border-radius:18px;
+    font-size:1.02rem;
+    line-height:1.7;
+  }
+
+  #screen-intro .lead::before{
+    content:"✓";
+    position:absolute;
+    top:22px;
+    left:22px;
+    width:28px;
+    height:28px;
+    display:grid;
+    place-items:center;
+    color:var(--blanco);
+    background:var(--azul);
+    border-radius:50%;
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+  }
+
+  #nombre{
+    width:100%;
+    margin-bottom:20px;
+    padding:15px 17px;
+    color:var(--texto);
+    background:var(--blanco);
+    border:1.5px solid var(--linea);
+    border-radius:13px;
+    box-shadow:0 6px 18px rgba(7,63,136,.05);
+    font-family:'Source Sans 3',sans-serif;
+    font-size:1rem;
+    transition:border-color .2s ease,box-shadow .2s ease;
+  }
+
+  #nombre::placeholder{
+    color:#91A3B7;
+  }
+
+  #nombre:focus{
+    outline:none;
+    border-color:var(--azul);
+    box-shadow:0 0 0 4px rgba(11,98,201,.12);
+  }
+
+  .btn{
+    min-height:48px;
+    padding:13px 27px;
+    border:none;
+    border-radius:999px;
+    cursor:pointer;
+    font-family:'Poppins',sans-serif;
+    font-size:.92rem;
+    font-weight:700;
+    transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+  }
+
+  .btn:hover{
+    transform:translateY(-2px);
+  }
+
+  .btn:active{
+    transform:translateY(0);
+  }
+
+  .btn:focus-visible{
+    outline:3px solid rgba(255,189,23,.55);
+    outline-offset:3px;
+  }
+
+  .btn:disabled{
+    cursor:not-allowed;
+    opacity:.65;
+    transform:none;
+  }
+
+  .btn-start{
+    color:#153458;
+    background:var(--amarillo);
+    box-shadow:0 10px 24px rgba(255,189,23,.31);
+  }
+
+  .btn-start:hover{
+    background:var(--amarillo-hover);
+    box-shadow:0 13px 28px rgba(255,189,23,.40);
+  }
+
+  .btn-si{
+    color:var(--blanco);
+    background:var(--verde);
+    box-shadow:0 9px 21px rgba(32,183,119,.24);
+  }
+
+  .btn-si:hover{
+    background:var(--verde-oscuro);
+  }
+
+  .btn-no{
+    color:var(--blanco);
+    background:var(--rojo);
+    box-shadow:0 9px 21px rgba(224,86,91,.22);
+  }
+
+  .btn-no:hover{
+    background:var(--rojo-oscuro);
+  }
+
+  .layout-test{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 280px;
+    gap:34px;
+    align-items:start;
+  }
+
+  .item-no{
+    display:inline-flex;
+    align-items:center;
+    margin-bottom:16px;
+    padding:7px 12px;
+    color:var(--azul-oscuro);
+    background:#E4F1FF;
+    border-radius:999px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.055em;
+  }
+
+  #pregunta-texto{
+    min-height:120px;
+    margin:0 0 30px;
+    color:var(--texto);
+    font-family:'Poppins',sans-serif;
+    font-size:clamp(1.3rem,2.5vw,1.75rem);
+    font-weight:700;
+    line-height:1.45;
+    letter-spacing:-.02em;
+  }
+
+  .botonera{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-bottom:10px;
+  }
+
+  .aviso-ia{
+    min-height:20px;
+    margin-top:17px;
+    padding:11px 13px;
+    color:#775700;
+    background:#FFF7D8;
+    border-left:4px solid var(--amarillo);
+    border-radius:0 10px 10px 0;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.73rem;
+    line-height:1.5;
+  }
+
+  .brujula-box{
+    padding:20px 18px 18px;
+    text-align:center;
+    background:linear-gradient(180deg,#F3F9FF,#EAF5FF);
+    border:1px solid #D5E8F9;
+    border-radius:20px;
+    box-shadow:0 12px 28px rgba(7,63,136,.08);
+  }
+
+  .brujula-label{
+    display:inline-block;
+    margin-bottom:7px;
+    padding:6px 11px;
+    color:var(--azul-oscuro);
+    background:var(--blanco);
+    border:1px solid var(--linea);
+    border-radius:999px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.68rem;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+
+  #radar{
+    width:100%;
+    max-width:210px;
+    height:auto;
+    filter:drop-shadow(0 8px 12px rgba(7,63,136,.07));
+  }
+
+  .area-list{
+    list-style:none;
+    padding:0;
+    margin:14px 0 0;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.67rem;
+    text-align:left;
+  }
+
+  .area-list li{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    padding:7px 3px;
+    color:var(--gris);
+    border-bottom:1px dashed #C5DDF3;
+  }
+
+  .area-list li:last-child{
+    border-bottom:none;
+  }
+
+  .area-list li.descartada{
+    text-decoration:line-through;
+    opacity:.42;
+  }
+
+  .area-list li.lider{
+    color:var(--azul-oscuro);
+    font-weight:700;
+  }
+
+  .progreso-bar{
+    height:10px;
+    margin:24px 0 8px;
+    overflow:hidden;
+    background:#DCE9F6;
+    border-radius:999px;
+  }
+
+  .progreso-bar > div{
+    height:100%;
+    background:linear-gradient(90deg,var(--azul),var(--azul-vivo),var(--amarillo));
+    border-radius:999px;
+    transition:width .3s ease;
+  }
+
+  .progreso-txt{
+    color:var(--gris);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.69rem;
+  }
+
+  #screen-resultado h2{
+    margin:0 0 8px;
+    color:var(--azul-oscuro);
+    font-family:'Poppins',sans-serif;
+    font-size:clamp(1.65rem,3vw,2.25rem);
+    font-weight:800;
+    letter-spacing:-.03em;
+  }
+
+  .area-tag{
+    display:inline-block;
+    margin:10px 8px 18px 0;
+    padding:7px 12px;
+    color:var(--blanco);
+    background:var(--azul);
+    border-radius:999px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.7rem;
+    font-weight:600;
+    box-shadow:0 7px 16px rgba(11,98,201,.20);
+  }
+
+  .area-tag.sec{
+    background:var(--verde);
+    box-shadow:0 7px 16px rgba(32,183,119,.19);
+  }
+
+  #reco-texto{
+    margin-bottom:24px;
+    padding:20px 22px;
+    color:var(--gris);
+    background:var(--azul-claro);
+    border:1px solid #D5E8FA;
+    border-radius:16px;
+    font-size:1rem;
+    line-height:1.7;
+  }
+
+  .carreras{
+    list-style:none;
+    padding:0;
+    margin:0;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+  }
+
+  .carreras li{
+    position:relative;
+    min-height:58px;
+    display:flex;
+    align-items:center;
+    padding:13px 15px 13px 47px;
+    color:var(--texto);
+    background:var(--blanco);
+    border:1px solid var(--linea);
+    border-radius:14px;
+    box-shadow:0 8px 22px rgba(7,63,136,.07);
+    font-size:.91rem;
+    font-weight:600;
+  }
+
+  .carreras li::before{
+    content:"✓";
+    position:absolute;
+    left:15px;
+    width:22px;
+    height:22px;
+    display:grid;
+    place-items:center;
+    color:var(--azul-oscuro);
+    background:var(--amarillo);
+    border-radius:50%;
+    font-size:.72rem;
+    font-weight:800;
+  }
+
+  .hidden{
+    display:none !important;
+  }
+
+  .loading-inline{
+    color:var(--gris);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.8rem;
+  }
+
+  .footer-note{
+    width:max-content;
+    max-width:100%;
+    margin:23px auto 0;
+    padding:8px 15px;
+    color:#66809C;
+    background:rgba(255,255,255,.72);
+    border:1px solid rgba(198,220,241,.78);
+    border-radius:999px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.65rem;
+    text-align:center;
+    box-shadow:0 7px 20px rgba(7,63,136,.06);
+  }
+
+  @media (max-width:1100px){
+    .logo-ucacue{
+      position:relative;
+      display:block;
+      top:auto;
+      left:auto;
+      width:200px;
+      margin:0 auto 22px;
+    }
+
+    .wrap{
+      margin-top:0;
+    }
+  }
+
+  @media (max-width:760px){
+    body{
+      padding:22px 13px 38px;
+    }
+
+    .masthead{
+      align-items:flex-start;
+      flex-direction:column;
+      padding:24px 23px;
+      border-radius:20px 20px 0 0;
+    }
+
+    .masthead .tag{
+      max-width:none;
+      text-align:left;
+    }
+
+    .subline{
+      padding:13px 22px;
+    }
+
+    .dossier{
+      padding:36px 22px 26px;
+      border-radius:0 0 20px 20px;
+    }
+
+    .stamp{
+      right:18px;
+    }
+
+    .layout-test{
+      grid-template-columns:1fr;
+    }
+
+    .brujula-box{
+      max-width:420px;
+      width:100%;
+      margin:auto;
+    }
+  }
+
+  @media (max-width:540px){
+    .logo-ucacue{
+      width:170px;
+    }
+
+    .masthead h1{
+      font-size:1.45rem;
+    }
+
+    #screen-intro .lead{
+      padding:56px 18px 19px;
+    }
+
+    #screen-intro .lead::before{
+      top:17px;
+      left:18px;
+    }
+
+    .botonera{
+      flex-direction:column;
+    }
+
+    .btn{
+      width:100%;
+    }
+
+    .carreras{
+      grid-template-columns:1fr;
+    }
+  }
+
+</style>
+</head>
+<body>
+<img src="ubepng.png" alt="Logo" class="logo-ucacue">
+<div class="wrap">
+  <div class="masthead">
+    <h1>MiRuta Vocacional  - Descubre tu camino, elige tu futuro</h1>
+    <div class="tag">Asistente de Orientación Vocacional</div>
+  </div>
+  <div class="subline">80 actividades · 5 áreas profesionales · el test se acorta según tus intereses reales</div>
+
+  <div class="dossier">
+    <div class="stamp">Expediente Nº <span id="stamp-num">000</span></div>
+
+    <!-- INTRO -->
+    <div id="screen-intro">
+      <p class="lead">Responde con sinceridad si cada actividad te interesa o no. A partir de la sexta respuesta,
+      la IA empieza a analizar tu patrón de intereses y va dejando de mostrarte preguntas de las áreas que claramente
+      no te llaman la atención — así no pierdes tiempo respondiendo lo que no te lleva a ningún lado.</p>
+      <input id="nombre" type="text" placeholder="Tu nombre (opcional)">
+      <button class="btn btn-start" onclick="iniciarTest()">Comenzar test →</button>
+    </div>
+
+    <!-- TEST -->
+    <div id="screen-test" class="hidden">
+      <div class="layout-test">
+        <div>
+          <div class="item-no">ÍTEM <span id="item-no">01</span> / 80</div>
+          <div id="pregunta-texto">Cargando…</div>
+          <div class="botonera">
+            <button class="btn btn-si" onclick="responder(true)">Me interesa</button>
+            <button class="btn btn-no" onclick="responder(false)">No me interesa</button>
+          </div>
+          <div class="aviso-ia" id="aviso-ia"></div>
+          <div class="progreso-bar"><div id="progreso-fill" style="width:0%"></div></div>
+          <div class="progreso-txt" id="progreso-txt">0 respondidas</div>
+        </div>
+
+        <div class="brujula-box">
+          <div class="brujula-label">Tu brújula</div>
+          <svg id="radar" width="200" height="200" viewBox="0 0 200 200"></svg>
+          <ul class="area-list" id="area-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTADO -->
+    <div id="screen-resultado" class="hidden">
+      <h2 id="reco-nombre">Tus resultados</h2>
+      <div id="reco-tags"></div>
+      <div id="reco-texto" class="loading-inline">Generando tu recomendación…</div>
+      <p class="item-no" style="margin-top:20px;">CARRERAS SUGERIDAS</p>
+      <ul class="carreras" id="reco-carreras"></ul>
+    </div>
+
+  </div>
+
+  <div class="footer-note">Test original: psic. Malca de Goldenberg · Motor adaptativo con Claude</div>
+</div>
+
+<div class="footer-note">Realizado por : Johnny Alvarado  · Brayan Brayan</div>
+</div>
+
+<script>
+const DATA = {"questions": [{"id": 1, "area": "IV", "text": "Diseñar programas de computación y explorar nuevas aplicaciones tecnológicas para uso del internet."}, {"id": 2, "area": "V", "text": "Criar, cuidar y tratar animales domésticos y de campo."}, {"id": 3, "area": "V", "text": "Investigar sobre áreas verdes, medio ambiente y cambios climáticos."}, {"id": 4, "area": "I", "text": "Ilustrar, dibujar y animar digitalmente."}, {"id": 5, "area": "III", "text": "Seleccionar, capacitar y motivar al personal de una organización/empresa."}, {"id": 6, "area": "II", "text": "Realizar excavaciones para descubrir restos del pasado."}, {"id": 7, "area": "IV", "text": "Resolver problemas de cálculo para construir un puente."}, {"id": 8, "area": "V", "text": "Diseñar cursos para enseñar a la gente sobre temas de salud e higiene."}, {"id": 9, "area": "I", "text": "Tocar un instrumento y componer música."}, {"id": 10, "area": "III", "text": "Planificar cuáles son las metas de una organización pública o privada a mediano y largo plazo."}, {"id": 11, "area": "IV", "text": "Diseñar y planificar la producción masiva de artículos como muebles, autos, equipos de oficina, empaques y envases para alimentos y otros."}, {"id": 12, "area": "I", "text": "Diseñar logotipos y portadas de una revista."}, {"id": 13, "area": "II", "text": "Organizar eventos y atender a sus asistentes."}, {"id": 14, "area": "V", "text": "Atender la salud de personas enfermas."}, {"id": 15, "area": "III", "text": "Controlar ingresos y egresos de fondos y presentar el balance final de una institución."}, {"id": 16, "area": "V", "text": "Hacer experimentos con plantas (frutas, árboles, flores)."}, {"id": 17, "area": "IV", "text": "Concebir planos para viviendas, edificios y ciudadelas."}, {"id": 18, "area": "IV", "text": "Investigar y probar nuevos productos farmacéuticos."}, {"id": 19, "area": "III", "text": "Hacer propuestas y formular estrategias para aprovechar las relaciones económicas entre dos países."}, {"id": 20, "area": "I", "text": "Pintar, hacer esculturas, ilustrar libros de arte, etcétera."}, {"id": 21, "area": "III", "text": "Elaborar campañas para introducir un nuevo producto al mercado."}, {"id": 22, "area": "V", "text": "Examinar y tratar los problemas visuales."}, {"id": 23, "area": "II", "text": "Defender a clientes individuales o empresas en juicios de diferente naturaleza."}, {"id": 24, "area": "IV", "text": "Diseñar máquinas que puedan simular actividades humanas."}, {"id": 25, "area": "II", "text": "Investigar las causas y efectos de los trastornos emocionales."}, {"id": 26, "area": "III", "text": "Supervisar las ventas de un centro comercial."}, {"id": 27, "area": "V", "text": "Atender y realizar ejercicios a personas que tienen limitaciones físicas, problemas de lenguaje, etcétera."}, {"id": 28, "area": "I", "text": "Prepararse para ser modelo profesional."}, {"id": 29, "area": "III", "text": "Aconsejar a las personas sobre planes de ahorro e inversiones."}, {"id": 30, "area": "IV", "text": "Elaborar mapas, planos e imágenes para el estudio y análisis de datos geográficos."}, {"id": 31, "area": "I", "text": "Diseñar juegos interactivos electrónicos para computadora."}, {"id": 32, "area": "V", "text": "Realizar el control de calidad de los alimentos."}, {"id": 33, "area": "III", "text": "Tener un negocio propio de tipo comercial."}, {"id": 34, "area": "II", "text": "Escribir artículos periodísticos, cuentos, novelas y otros."}, {"id": 35, "area": "I", "text": "Redactar guiones y libretos para un programa de televisión."}, {"id": 36, "area": "III", "text": "Organizar un plan de distribución y venta de un gran almacén."}, {"id": 37, "area": "II", "text": "Estudiar la diversidad cultural en el ámbito rural y urbano."}, {"id": 38, "area": "II", "text": "Gestionar y evaluar convenios internacionales de cooperación para el desarrollo social."}, {"id": 39, "area": "I", "text": "Crear campañas publicitarias."}, {"id": 40, "area": "V", "text": "Trabajar investigando la reproducción de peces, camarones y otros animales marinos."}, {"id": 41, "area": "IV", "text": "Dedicarse a fabricar productos alimenticios de consumo masivo."}, {"id": 42, "area": "II", "text": "Gestionar y evaluar proyectos de desarrollo en una institución educativa y/o fundación."}, {"id": 43, "area": "I", "text": "Rediseñar y decorar espacios físicos en viviendas, oficinas y locales comerciales."}, {"id": 44, "area": "III", "text": "Administrar una empresa de turismo y/o agencias de viaje."}, {"id": 45, "area": "V", "text": "Aplicar métodos alternativos a la medicina tradicional para atender personas con dolencias de diversa índole."}, {"id": 46, "area": "I", "text": "Diseñar ropa para niños, jóvenes y adultos."}, {"id": 47, "area": "V", "text": "Investigar organismos vivos para elaborar vacunas."}, {"id": 48, "area": "IV", "text": "Manejar y/o dar mantenimiento a dispositivos/aparatos tecnológicos en aviones, barcos, radares, etcétera."}, {"id": 49, "area": "II", "text": "Estudiar idiomas extranjeros -actuales y antiguos- para hacer traducción."}, {"id": 50, "area": "I", "text": "Restaurar piezas y obras de arte."}, {"id": 51, "area": "IV", "text": "Revisar y dar mantenimiento a artefactos eléctricos, electrónicos y computadoras."}, {"id": 52, "area": "II", "text": "Enseñar a niños de 0 a 5 años."}, {"id": 53, "area": "III", "text": "Investigar y/o sondear nuevos mercados."}, {"id": 54, "area": "V", "text": "Atender la salud dental de las personas."}, {"id": 55, "area": "II", "text": "Tratar a niños, jóvenes y adultos con problemas psicológicos."}, {"id": 56, "area": "III", "text": "Crear estrategias de promoción y venta de nuevos productos ecuatorianos en el mercado internacional."}, {"id": 57, "area": "V", "text": "Planificar y recomendar dietas para personas diabéticas y/o con sobrepeso."}, {"id": 58, "area": "IV", "text": "Trabajar en una empresa petrolera en un cargo técnico como control de la producción."}, {"id": 59, "area": "III", "text": "Administrar una empresa (familiar, privada o pública)."}, {"id": 60, "area": "IV", "text": "Tener un taller de reparación y mantenimiento de carros, tractores, etcétera."}, {"id": 61, "area": "IV", "text": "Ejecutar proyectos de extracción minera y metalúrgica."}, {"id": 62, "area": "III", "text": "Asistir a directivos de multinacionales con manejo de varios idiomas."}, {"id": 63, "area": "II", "text": "Diseñar programas educativos para niños con discapacidad."}, {"id": 64, "area": "IV", "text": "Aplicar conocimientos de estadística en investigaciones en diversas áreas (social, administrativa, salud, etcétera)."}, {"id": 65, "area": "I", "text": "Fotografiar hechos históricos, lugares significativos, rostros, paisajes para el área publicitaria, artística, periodística y social."}, {"id": 66, "area": "II", "text": "Trabajar en museos y bibliotecas nacionales e internacionales."}, {"id": 67, "area": "I", "text": "Ser parte de un grupo de teatro."}, {"id": 68, "area": "I", "text": "Producir cortometrajes, spots publicitarios, programas educativos, de ficción, etcétera."}, {"id": 69, "area": "V", "text": "Estudiar la influencia entre las corrientes marinas y el clima y sus consecuencias ecológicas."}, {"id": 70, "area": "II", "text": "Conocer las distintas religiones, su filosofía y transmitirlas a la comunidad en general."}, {"id": 71, "area": "III", "text": "Asesorar a inversionistas en la compra de bienes/acciones en mercados nacionales e internacionales."}, {"id": 72, "area": "II", "text": "Estudiar grupos étnicos, sus costumbres, tradiciones, cultura y compartir sus vivencias."}, {"id": 73, "area": "IV", "text": "Explorar el espacio sideral, los planetas, sus características y componentes."}, {"id": 74, "area": "V", "text": "Mejorar la imagen facial y corporal de las personas aplicando diferentes técnicas."}, {"id": 75, "area": "I", "text": "Decorar jardines de casas y parques públicos."}, {"id": 76, "area": "V", "text": "Administrar y renovar menúes de comidas en un hotel o restaurante."}, {"id": 77, "area": "I", "text": "Trabajar como presentador de televisión, locutor de radio y televisión, animador de programas culturales y concursos."}, {"id": 78, "area": "II", "text": "Diseñar y ejecutar programas de turismo."}, {"id": 79, "area": "IV", "text": "Administrar y ordenar (planificar) adecuadamente la ocupación del espacio físico de ciudades, países, etc., utilizando imágenes de satélite, mapas."}, {"id": 80, "area": "III", "text": "Organizar, planificar y administrar centros educativos."}], "areas": {"I": "Arte y Creatividad", "II": "Ciencias Sociales", "III": "Económica, Administrativa y Financiera", "IV": "Ciencia y Tecnología", "V": "Ciencias Ecológicas, Biológicas y de la Salud"}, "professions": {"I": ["Diseño Gráfico", "Diseño y Decoración de Interiores", "Diseño de Jardines", "Diseño de Modas", "Diseño de Joyas", "Artes Plásticas (Pintura, Escultura, Danza, Teatro, Artesanía, Cerámica)", "Dibujo Publicitario", "Restauración y Museología", "Modelaje", "Fotografía", "Fotografía Digital", "Gestión Gráfica y Publicitaria", "Locución y Publicidad", "Actuación", "Camarografía", "Arte Industrial", "Producción Audiovisual y Multimedia", "Comunicación y Producción en Radio y Televisión", "Diseño del Paisaje", "Cine y Video", "Comunicación Escénica para televisión"], "II": ["Psicología en general", "Trabajo Social", "Idiomas", "Educación Internacional", "Historia y Geografía", "Periodismo", "Periodismo Digital", "Derecho", "Ciencias Políticas", "Sociología", "Antropología", "Arqueología", "Gestión Social y Desarrollo", "Consejería Familiar", "Comunicación y Publicidad", "Administración Educativa", "Educación Especial", "Psicopedagogía", "Estimulación Temprana", "Traducción Simultánea", "Lingüística", "Educación de Párvulos", "Bibliotecología", "Museología", "Relaciones Internacionales y Diplomacia", "Comunicación Social con mención en Marketing y Gestión de Empresas", "Redacción Creativa y Publicitaria", "Relaciones Públicas y Comunicación Organizacional", "Hotelería y Turismo", "Teología, Institución Sacerdotal"], "III": ["Administración de Empresas", "Contabilidad", "Auditoría", "Ventas", "Marketing Estratégico", "Gestión y Negocios Internacionales", "Gestión Empresarial", "Gestión Financiera", "Ingeniería Comercial", "Comercio Exterior", "Banca y Finanzas", "Gestión de Recursos Humanos", "Comunicaciones Integradas en Marketing", "Administración de Empresas Ecoturísticas y de Hospitalidad", "Ciencias Económicas y Financieras", "Administración y Ciencias Políticas", "Ciencias Empresariales", "Comercio Electrónico", "Emprendedores", "Gestión de Organismos Públicos (Municipios, Ministerios, etc.)", "Gestión de Centros Educativos"], "IV": ["Ingeniería en Sistemas Computacionales", "Geología", "Ingeniería Civil", "Arquitectura", "Electrónica", "Telemática", "Telecomunicaciones", "Ingeniería Mecatrónica (Robótica)", "Imagen y Sonido", "Minas, Petróleo y Metalurgia", "Ingeniería Mecánica", "Ingeniería Industrial", "Física", "Matemáticas Aplicadas", "Ingeniería en Estadística", "Ingeniería Automotriz", "Biotecnología Ambiental", "Ingeniería Geográfica", "Carreras Militares (Marina, Aviación, Ejército)", "Ingeniería en Costas y Obras Portuarias", "Estadística Informática", "Programación y Desarrollo de Sistemas", "Tecnología en Informática Educativa", "Astronomía", "Ingeniería en Ciencias Geográficas y Desarrollo Sustentable"], "V": ["Biología", "Bioquímica", "Farmacia", "Biología Marina", "Bioanálisis", "Biotecnología", "Ciencias Ambientales", "Zootecnia", "Veterinaria", "Nutrición y Estética", "Cosmetología", "Dietética y Estética", "Medicina", "Obstetricia", "Urgencias Médicas", "Odontología", "Enfermería", "Oceanografía y Ciencias Ambientales", "Agronomía", "Horticultura y Fruticultura", "Ingeniería de Alimentos", "Gastronomía", "Chef", "Cultura Física, Deportes y Rehabilitación", "Gestión Ambiental", "Ingeniería Ambiental", "Optometría", "Homeopatía", "Reflexología"]}}
+;
+const AREAS = DATA.areas;
+const AREA_CODES = Object.keys(AREAS);
+const QUESTIONS = DATA.questions; // [{id, area, text}]
+const PROFESSIONS = DATA.professions;
+
+const EVAL_CADA = 6;
+const MIN_POR_AREA_ANTES_DESCARTE = 3;
+const MAX_PREGUNTAS_TOTAL = 40;
+
+let state = {
+  nombre: '',
+  puntajes: Object.fromEntries(AREA_CODES.map(a => [a, 0])),
+  respondidasPorArea: Object.fromEntries(AREA_CODES.map(a => [a, 0])),
+  respondidas: [],       // ids ya mostrados
+  areasDescartadas: [],
+  preguntaActual: null,
+};
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function elegirSiguientePregunta(){
+  const activas = AREA_CODES.filter(a => !state.areasDescartadas.includes(a));
+  const candidatas = QUESTIONS.filter(q => !state.respondidas.includes(q.id) && activas.includes(q.area));
+  if(candidatas.length === 0) return null;
+  return shuffle(candidatas)[0];
+}
+
+function iniciarTest(){
+  state.nombre = document.getElementById('nombre').value.trim();
+  document.getElementById('stamp-num').textContent = String(Math.floor(Math.random()*900)+100);
+  document.getElementById('screen-intro').classList.add('hidden');
+  document.getElementById('screen-test').classList.remove('hidden');
+  const q = elegirSiguientePregunta();
+  state.preguntaActual = q;
+  state.respondidas.push(q.id);
+  renderPregunta();
+  renderBrujula();
+}
+
+function renderPregunta(){
+  document.getElementById('item-no').textContent = String(state.respondidas.length).padStart(2,'0');
+  document.getElementById('pregunta-texto').textContent = state.preguntaActual.text;
+  const pct = Math.min(100, Math.round((state.respondidas.length / MAX_PREGUNTAS_TOTAL) * 100));
+  document.getElementById('progreso-fill').style.width = pct + '%';
+  document.getElementById('progreso-txt').textContent = `${state.respondidas.length} respondidas`;
+}
+
+function renderBrujula(){
+  const svg = document.getElementById('radar');
+  const n = AREA_CODES.length;
+  const cx=100, cy=100, rMax=78;
+  const maxVal = Math.max(4, ...AREA_CODES.map(a => state.puntajes[a]));
+  const pointFor = (i, valRatio) => {
+    const angle = (Math.PI*2*i/n) - Math.PI/2;
+    return [cx + Math.cos(angle)*rMax*valRatio, cy + Math.sin(angle)*rMax*valRatio];
+  };
+  let rings = '';
+  [0.33,0.66,1].forEach(r=>{
+    const pts = AREA_CODES.map((_,i)=>pointFor(i,r).join(',')).join(' ');
+    rings += `<polygon points="${pts}" fill="none" stroke="#D7E5F5" stroke-width="1"/>`;
+  });
+  let axes = '';
+  AREA_CODES.forEach((a,i)=>{
+    const [x,y] = pointFor(i,1);
+    const descartada = state.areasDescartadas.includes(a);
+    axes += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${descartada?'#B8CAE0':'#0B62C9'}" stroke-width="1" opacity="${descartada?0.3:0.5}"/>`;
+    const lx = cx + Math.cos((Math.PI*2*i/n)-Math.PI/2)*(rMax+16);
+    const ly = cy + Math.sin((Math.PI*2*i/n)-Math.PI/2)*(rMax+16);
+    axes += `<text x="${lx}" y="${ly}" font-family="IBM Plex Mono, monospace" font-size="10" fill="${descartada?'#9AAFC4':'#102B4D'}" text-anchor="middle" dominant-baseline="middle">${a}</text>`;
+  });
+  const dataPts = AREA_CODES.map((a,i)=>pointFor(i, state.puntajes[a]/maxVal).join(',')).join(' ');
+  const shape = `<polygon points="${dataPts}" fill="#FFBD17" fill-opacity="0.30" stroke="#FFBD17" stroke-width="2"/>`;
+
+  svg.innerHTML = rings + axes + shape;
+
+  const lista = document.getElementById('area-list');
+  const maxScore = Math.max(...AREA_CODES.map(a=>state.puntajes[a]));
+  lista.innerHTML = AREA_CODES.map(a=>{
+    const descartada = state.areasDescartadas.includes(a);
+    const lider = !descartada && state.puntajes[a] === maxScore && maxScore > 0;
+    return `<li class="${descartada?'descartada':''} ${lider?'lider':''}">${a} · ${AREAS[a]}<span>${state.puntajes[a]}</span></li>`;
+  }).join('');
+}
+
+async function llamarClaude(promptTexto, maxTokens){
+  const resp = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-6",
+      max_tokens: maxTokens,
+      messages: [{ role: "user", content: promptTexto }]
+    })
+  });
+  const data = await resp.json();
+  const texto = (data.content || []).filter(b=>b.type==='text').map(b=>b.text).join('').trim();
+  return texto.replace(/```json/g,'').replace(/```/g,'').trim();
+}
+
+async function evaluarDescarte(){
+  const activas = AREA_CODES.filter(a => !state.areasDescartadas.includes(a));
+  if(activas.length <= 1) return;
+
+  const resumen = {};
+  activas.forEach(a=>{
+    resumen[a] = { nombre: AREAS[a], respondidas: state.respondidasPorArea[a], interes_marcado: state.puntajes[a] };
+  });
+
+  const prompt = `Eres el motor adaptativo de un test vocacional. Cada estudiante responde "me interesa" o "no me interesa" a actividades de 5 áreas profesionales.
+
+Progreso actual por área (solo áreas que siguen activas):
+${JSON.stringify(resumen, null, 2)}
+
+Reglas:
+- Solo puedes recomendar descartar un área si tiene al menos ${MIN_POR_AREA_ANTES_DESCARTE} respuestas.
+- Descarta un área SOLO si su proporción de "me interesa" es claramente y consistentemente más baja que las demás áreas activas (no descartes por pequeñas diferencias).
+- Nunca descartes todas las áreas activas; debe quedar mínimo 1.
+- Sé conservador: en la duda, no descartes todavía.
+
+Responde ÚNICAMENTE con JSON válido, sin texto adicional, con este formato exacto:
+{"descartar": ["<codigo_area>"], "razon": "<explicación breve en español, 1 frase>"}`;
+
+  try{
+    const texto = await llamarClaude(prompt, 300);
+    const decision = JSON.parse(texto);
+    let descartar = decision.descartar || [];
+    if(new Set(descartar).size >= activas.length){ descartar = []; }
+    if(descartar.length){
+      state.areasDescartadas = [...new Set([...state.areasDescartadas, ...descartar])];
+      document.getElementById('aviso-ia').textContent = `IA: ${decision.razon || 'ajustando el test a tus intereses.'}`;
+    }
+  }catch(e){
+    console.warn('No se pudo evaluar descarte adaptativo:', e);
+  }
+}
+
+async function responder(meInteresa){
+  document.querySelectorAll('.btn-si,.btn-no').forEach(b=>b.disabled=true);
+
+  const area = state.preguntaActual.area;
+  if(meInteresa) state.puntajes[area] += 1;
+  state.respondidasPorArea[area] += 1;
+  renderBrujula();
+
+  if(state.respondidas.length % EVAL_CADA === 0){
+    document.getElementById('aviso-ia').textContent = 'IA analizando tu patrón de intereses…';
+    await evaluarDescarte();
+    renderBrujula();
+  }
+
+  const siguiente = state.respondidas.length < MAX_PREGUNTAS_TOTAL ? elegirSiguientePregunta() : null;
+
+  document.querySelectorAll('.btn-si,.btn-no').forEach(b=>b.disabled=false);
+
+  if(!siguiente){
+    finalizarTest();
+    return;
+  }
+  state.preguntaActual = siguiente;
+  state.respondidas.push(siguiente.id);
+  renderPregunta();
+}
+
+function finalizarTest(){
+  document.getElementById('screen-test').classList.add('hidden');
+  document.getElementById('screen-resultado').classList.remove('hidden');
+  document.getElementById('reco-nombre').textContent = state.nombre ? `Resultados de ${state.nombre}` : 'Tus resultados';
+  generarRecomendacion();
+}
+
+async function generarRecomendacion(){
+  const ordenado = Object.entries(state.puntajes).sort((a,b)=>b[1]-a[1]);
+  const areaPrincipal = ordenado[0][0];
+  const areaSecundaria = ordenado[1][0];
+
+  document.getElementById('reco-tags').innerHTML =
+    `<span class="area-tag">${AREAS[areaPrincipal]}</span><span class="area-tag sec">${AREAS[areaSecundaria]}</span>`;
+
+  const candidatas = [...PROFESSIONS[areaPrincipal].slice(0,12), ...PROFESSIONS[areaSecundaria].slice(0,8)];
+
+  const prompt = `Eres un orientador vocacional. Un estudiante ecuatoriano de colegio terminó un test de intereses vocacionales con estos puntajes por área (mayor número = más actividades marcadas como "me interesa"):
+
+${JSON.stringify(Object.fromEntries(AREA_CODES.map(a=>[AREAS[a], state.puntajes[a]])), null, 2)}
+
+Su área principal de interés es: ${AREAS[areaPrincipal]}
+Su área secundaria de interés es: ${AREAS[areaSecundaria]}
+
+Lista de carreras posibles relacionadas a esas dos áreas:
+${JSON.stringify(candidatas)}
+
+Tareas:
+1. Escribe una recomendación cálida y breve (máximo 120 palabras, en español, dirigida directamente al estudiante) explicando qué revelan sus resultados y animándolo a conversarlo con orientadores y familia.
+2. Elige las 6 carreras de la lista que mejor combinen ambas áreas de interés.
+
+Responde ÚNICAMENTE con JSON válido, sin texto adicional, con este formato exacto:
+{"recomendacion": "<texto>", "profesiones_sugeridas": ["<carrera1>","<carrera2>","<carrera3>","<carrera4>","<carrera5>","<carrera6>"]}`;
+
+  try{
+    const texto = await llamarClaude(prompt, 700);
+    const data = JSON.parse(texto);
+    document.getElementById('reco-texto').classList.remove('loading-inline');
+    document.getElementById('reco-texto').textContent = data.recomendacion;
+    document.getElementById('reco-carreras').innerHTML =
+      (data.profesiones_sugeridas || candidatas.slice(0,6)).map(p=>`<li>${p}</li>`).join('');
+  }catch(e){
+    document.getElementById('reco-texto').classList.remove('loading-inline');
+    document.getElementById('reco-texto').textContent =
+      'No se pudo generar la recomendación automática, pero según tus puntajes tus áreas más fuertes son las mostradas arriba.';
+    document.getElementById('reco-carreras').innerHTML = candidatas.slice(0,6).map(p=>`<li>${p}</li>`).join('');
+  }
+}
+</script>
+</body>
+</html>
